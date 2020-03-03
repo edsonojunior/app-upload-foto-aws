@@ -1,0 +1,32 @@
+.example-card {
+  max-width: 400px;
+  margin-right: 24px !important;
+  padding-bottom: 60px !important;
+}
+
+.row-position {
+  display: flex;
+}
+
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}
+
+.align-right {
+  float: right;
+}
+
+.text-center {
+  align-items: center
+}
+
+.mat-card-center {
+  width: 100%;
+  text-align: center;
+}
+
+.mat.card {
+  margin-right: 24px !important;
+  padding-bottom: 60px !important;
+}
