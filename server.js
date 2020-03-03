@@ -2,7 +2,7 @@
 const express = require('express')
 const path = require('path')
 const port = process.env.PORT || 3000
-const app = e()
+const app = express()
 //const http = express.createServer();
 
 // http.get('*', function (req, res) {
