@@ -1,32 +1,129 @@
-.example-card {
-  max-width: 400px;
-  margin-right: 24px !important;
-  padding-bottom: 60px !important;
+/** No CSS for this example */
+.settings-card {
+  height: 270px;
+  width: 360px;
 }
 
-.row-position {
-  display: flex;
+.mat-card {
+  padding: 16px;
+  padding-top: 12px;
 }
 
-.example-button-row button,
-.example-button-row a {
-  margin-right: 8px;
+.padRight {
+  display: grid;
+  float: right;
+  text-align: right;
 }
 
-.align-right {
+.cardTitle {
+  color: #1f54a6;
+  height: 27px;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.25px;
+}
+
+.productIcon {
   float: right;
 }
 
-.text-center {
-  align-items: center
+.product {
+  height: 16px;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 16px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
-.mat-card-center {
+.mat-progress-bar {
+  padding-top: 15px;
+  height: 24px;
+}
+
+/deep/ .mat-progress-bar-fill::after {
+  background-color: #d0021b;
+}
+
+/deep/ .mat-progress-bar-buffer {
+  fill: #d8d8d8;
+  background-color: #d8d8d8
+}
+
+.barStatus {
+  position: relative;
+  top: -22px;
+  left: 5px;
+  height: 20px;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.25px;
+}
+
+.barText {
+  position: relative;
+  top: -26px;
+  color: #d0021b;
+  font-family: Lekton;
+  font-size: 22px;
+  font-weight: 700;
+  padding-left: 2px;
+  width: 15%;
+  text-align: right;
+  display: grid;
+  float: right;
+}
+
+.cardLabel {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.image {
+  max-width: 80%;
+  max-height: auto;
+  display: block;
+  object-fit: cover;
+  /* remove extra space below image */
+}
+
+mat-card-image {
+  object-fit: cover;
+  /*this makes the image in src fit to the size specified below*/
   width: 100%;
-  text-align: center;
+  /* Here you can use wherever you want to specify the width and also the height of the <img>*/
+  height: 85%;
 }
 
-.mat.card {
-  margin-right: 24px !important;
-  padding-bottom: 60px !important;
+mat-grid-list {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.title-center {
+  flex: 1 1 auto;
+  text-align: center;
+  font-size: medium;
+}
+
+input[type='file'] {
+  display: none
+}
+
+.input-wrapper label {
+  background-color: #3498db;
+  border-radius: 5px;
+  color: #fff;
+  margin: 10px;
+  padding: 6px 20px
+}
+
+.input-wrapper label:hover {
+  background-color: #2980b9
 }

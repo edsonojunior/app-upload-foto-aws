@@ -1,13 +1,11 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<ng-template #customLoadingTemplate>
+  <div class="custom-class">
 
+  </div>
+</ng-template>
 
+<ngx-loading [show]="isLoading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate">
+</ngx-loading>
 
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
@@ -17,38 +15,87 @@
   <div class="spacer"></div>
 </div>
 
-<mat-card>
+<mat-card class="mat-card-center">
 
 </mat-card>
 
-<mat-grid-list cols="4" rowHeight="1:1">
-  <mat-grid-tile *ngFor="let foto of fotos">
-    <mat-card class="example-card">
-      <mat-card-header>
-      </mat-card-header>
-      <img mat-card-image src="{{foto.url}}" alt="">
+<hr>
+
+<mat-grid-list cols="4" rowHeight="1:1" gutterSize="25px">
+  <mat-grid-tile *ngFor="let foto of fotos" [colspan]="1" [rowspan]="1">
+    <img class="image" src="{{foto.url}}">
+    <mat-grid-tile-footer class="align-right">
       <mat-card-actions class="align-right">
         <button mat-raised-button color="warn" (click)="deleteFoto(foto.key)"><i
             class="fas fa-exclamation-triangle"></i>
           Apagar Foto</button>
       </mat-card-actions>
-    </mat-card>
+    </mat-grid-tile-footer>
+    <mat-grid-tile-header>
+      <select class="form-control">
+        <option>Frente</option>
+        <option>Traseira</option>
+        <option>Placa</option>
+        <option>Interno</option>
+      </select>
+    </mat-grid-tile-header>
   </mat-grid-tile>
 
 </mat-grid-list>
 
 <hr>
 
-<mat-card class="mat-card-center">
-  <mat-card-subtitle>
-    <span><input type="file" (change)="selectFile($event)"></span> | Somente .jpg/jpeg (até 300kb) | Orientação paisagem
-    | Resolução Mínima 1024x768
-  </mat-card-subtitle>
+<mat-toolbar class="items-center"> <span class="title-center">Enviar Arquivos | Somente .jpg/jpeg (até 300kb) |
+    Orientação paisagem | Resolução Mínima 1024x768</span>
+</mat-toolbar>
+
+<hr>
+
+<mat-card>
+
+  <div class="row">
+
+    <div class="col-3">
+      <label>Arquivo</label>
+      <br>
+      <!-- <input type="file" (change)="selectFile($event)"> -->
+      <div class='input-wrapper'>
+        <label for='input-file'>
+          Selecionar um arquivo
+        </label>
+        <input id='input-file' type='file' value='' (change)="selectFile($event)" />
+        <span id='file-name'></span>
+      </div>
+    </div>
+
+    <div class="col-3">
+      <label>Tipo</label>
+      <select class="form-control">
+        <option>Frente</option>
+        <option>Traseira</option>
+        <option>Placa</option>
+        <option>Interno</option>
+      </select>
+    </div>
+
+    <div class="col-6">
+      <label>Detalhe</label>
+      <input type="text" class="form-control" placeholder="Detalhe">
+    </div>
+
+  </div>
+
 </mat-card>
 
 <hr>
 
-<mat-card class="mat-card-center">
-  <button class="mat-focus-indicator mat-raised-button mat-button-base mat-primary" [disabled]="!selectedFiles"
-    (click)="upload()">Enviar Arquivo</button>
+<mat-card>
+
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-primary btn-lg btn-block" [disabled]="!selectedFiles" (click)="upload()">Enviar
+        Arquivo</button>
+    </div>
+  </div>
+
 </mat-card>

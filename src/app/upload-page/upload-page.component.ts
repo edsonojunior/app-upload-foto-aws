@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import * as AWS from 'aws-sdk/global';
 import * as S3 from 'aws-sdk/clients/s3';
-import { async } from '@angular/core/testing';
 
-declare const Buffer
+export interface Tile {
+  cols: number;
+  rows: number;
+  text: string;
+  border: string;
+}
 
 const bucket = new S3(
   {
@@ -19,6 +22,15 @@ const bucket = new S3(
   styleUrls: ['./upload-page.component.scss']
 })
 export class UploadPageComponent implements OnInit {
+
+  tiles: Tile[] = [
+    { text: 'Tile 1', cols: 1, rows: 1, border: '3px double purple' },
+    { text: 'Tile 2', cols: 1, rows: 1, border: '3px double red' },
+    { text: 'Tile 3', cols: 1, rows: 1, border: '3px double skyblue' },
+    { text: 'Tile 4', cols: 1, rows: 1, border: '3px double yellow' },
+  ];
+
+  isLoading: boolean = false
 
   image: any
   selectedFiles: FileList;
@@ -39,6 +51,8 @@ export class UploadPageComponent implements OnInit {
 
     //debugger
 
+    this.isLoading = true
+
     const contentType = file.type;
 
     const params = {
@@ -58,6 +72,7 @@ export class UploadPageComponent implements OnInit {
       this.listaFotos()
       return true;
     }).promise().then(() => {
+      this.isLoading = false
       this.listaFotos()
     });
   }
@@ -78,6 +93,8 @@ export class UploadPageComponent implements OnInit {
   async listaFotos() {
 
     //debugger    
+
+    this.isLoading = true
 
     const params = {
       Bucket: 'angular-photo-bucket'
@@ -102,6 +119,8 @@ export class UploadPageComponent implements OnInit {
 
     }
 
+    this.isLoading = false
+
     console.log(this.fotos)
 
   }
@@ -109,6 +128,8 @@ export class UploadPageComponent implements OnInit {
   async deleteFoto(key: any) {
 
     debugger
+
+    this.isLoading = true
 
     var params = {
       Bucket: 'angular-photo-bucket',
@@ -120,15 +141,18 @@ export class UploadPageComponent implements OnInit {
       console.log("arquivo encontrado")
       try {
         await bucket.deleteObject(params).promise().then(() => {
+          this.isLoading = false
           this.listaFotos()
         })
         console.log("arquivo apagado com sucesso")
       }
       catch (err) {
         console.log("ERRO ao apagar arquivo: " + JSON.stringify(err))
+        this.isLoading = false
       }
     } catch (err) {
       console.log("Arquivo não encontrado : " + err.code)
+      this.isLoading = false
     }
 
     console.log(key)
